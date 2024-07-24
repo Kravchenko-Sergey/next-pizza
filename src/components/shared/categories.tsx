@@ -13,7 +13,7 @@ export const Categories = ({ className }: CategoriesProps) => {
   const categories = ['Пиццы', 'Комбо', 'Закуски', 'Коктейли', 'Кофе', 'Напитки', 'Десерты']
 
   return (
-    <div className={cn('inline-flex gap-1 p-1 rounded-2xl', className)}>
+    <div className={cn('inline-flex gap-1 p-1 bg-gray-50 rounded-2xl', className)}>
       {categories.map((category, index) => {
         return (
           <a
