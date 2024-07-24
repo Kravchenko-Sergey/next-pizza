@@ -2,29 +2,38 @@
 
 import { cn } from '@/lib/utils'
 import { useState } from 'react'
+import { useCategoryStore } from '../../../store/category'
 
 type CategoriesProps = {
   className: string
 }
 
 export const Categories = ({ className }: CategoriesProps) => {
-  const [activeIndex, setActiveIndex] = useState(0)
+  const categoryActiveId = useCategoryStore(state => state.activeId)
 
-  const categories = ['Пиццы', 'Комбо', 'Закуски', 'Коктейли', 'Кофе', 'Напитки', 'Десерты']
+  const categories = [
+    { id: 1, name: 'Пиццы' },
+    { id: 2, name: 'Комбо' },
+    { id: 3, name: 'Закуски' },
+    { id: 4, name: 'Коктейли' },
+    { id: 5, name: 'Кофе' },
+    { id: 6, name: 'Напитки' },
+    { id: 7, name: 'Десерты' }
+  ]
 
   return (
     <div className={cn('inline-flex gap-1 p-1 bg-gray-50 rounded-2xl', className)}>
-      {categories.map((category, index) => {
+      {categories.map(({ name, id }) => {
         return (
           <a
-            key={index}
-            onClick={() => setActiveIndex(index)}
+            key={id}
+            href={`/#${name}`}
             className={cn(
               'flex items-center font-bold h-11 rounded-2xl px-5',
-              activeIndex === index && 'bg-white shadow-md shadow-gray-200 text-primary'
+              categoryActiveId === id && 'bg-white shadow-md shadow-gray-200 text-primary'
             )}
           >
-            <button>{category}</button>
+            <button>{name}</button>
           </a>
         )
       })}

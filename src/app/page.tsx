@@ -28,35 +28,35 @@ export default function Home() {
                     items: [{ price: 550 }]
                   },
                   {
-                    id: 1,
+                    id: 2,
                     name: 'Ветчина и сыр',
                     imageUrl: 'https://media.dodostatic.net/image/r:292x292/11EE7D60FDA22358AC33C6A44EB093A2.avif',
                     price: 550,
                     items: [{ price: 550 }]
                   },
                   {
-                    id: 1,
+                    id: 3,
                     name: 'Ветчина и сыр',
                     imageUrl: 'https://media.dodostatic.net/image/r:292x292/11EE7D60FDA22358AC33C6A44EB093A2.avif',
                     price: 550,
                     items: [{ price: 550 }]
                   },
                   {
-                    id: 1,
+                    id: 4,
                     name: 'Ветчина и сыр',
                     imageUrl: 'https://media.dodostatic.net/image/r:292x292/11EE7D60FDA22358AC33C6A44EB093A2.avif',
                     price: 550,
                     items: [{ price: 550 }]
                   },
                   {
-                    id: 1,
+                    id: 5,
                     name: 'Ветчина и сыр',
                     imageUrl: 'https://media.dodostatic.net/image/r:292x292/11EE7D60FDA22358AC33C6A44EB093A2.avif',
                     price: 550,
                     items: [{ price: 550 }]
                   },
                   {
-                    id: 1,
+                    id: 6,
                     name: 'Ветчина и сыр',
                     imageUrl: 'https://media.dodostatic.net/image/r:292x292/11EE7D60FDA22358AC33C6A44EB093A2.avif',
                     price: 550,
@@ -69,42 +69,42 @@ export default function Home() {
                 title='Комбо'
                 items={[
                   {
-                    id: 1,
+                    id: 7,
                     name: 'Ветчина и сыр',
                     imageUrl: 'https://media.dodostatic.net/image/r:292x292/11EE7D60FDA22358AC33C6A44EB093A2.avif',
                     price: 550,
                     items: [{ price: 550 }]
                   },
                   {
-                    id: 1,
+                    id: 8,
                     name: 'Ветчина и сыр',
                     imageUrl: 'https://media.dodostatic.net/image/r:292x292/11EE7D60FDA22358AC33C6A44EB093A2.avif',
                     price: 550,
                     items: [{ price: 550 }]
                   },
                   {
-                    id: 1,
+                    id: 9,
                     name: 'Ветчина и сыр',
                     imageUrl: 'https://media.dodostatic.net/image/r:292x292/11EE7D60FDA22358AC33C6A44EB093A2.avif',
                     price: 550,
                     items: [{ price: 550 }]
                   },
                   {
-                    id: 1,
+                    id: 10,
                     name: 'Ветчина и сыр',
                     imageUrl: 'https://media.dodostatic.net/image/r:292x292/11EE7D60FDA22358AC33C6A44EB093A2.avif',
                     price: 550,
                     items: [{ price: 550 }]
                   },
                   {
-                    id: 1,
+                    id: 11,
                     name: 'Ветчина и сыр',
                     imageUrl: 'https://media.dodostatic.net/image/r:292x292/11EE7D60FDA22358AC33C6A44EB093A2.avif',
                     price: 550,
                     items: [{ price: 550 }]
                   },
                   {
-                    id: 1,
+                    id: 12,
                     name: 'Ветчина и сыр',
                     imageUrl: 'https://media.dodostatic.net/image/r:292x292/11EE7D60FDA22358AC33C6A44EB093A2.avif',
                     price: 550,
