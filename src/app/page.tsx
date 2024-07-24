@@ -1,9 +1,13 @@
-import {Button} from "@/components/ui/button";
+import { Container, Title } from '@/components/shared'
+import { Categories } from '@/components/shared/categories'
 
 export default function Home() {
   return (
-    <main>
-        <Button>Button</Button>
-    </main>
-  );
+    <>
+      <Container className='mt-10'>
+        <Title text='Все пиццы' size='lg' className='font-extrabold' />
+        <Categories className='' />
+      </Container>
+    </>
+  )
 }
