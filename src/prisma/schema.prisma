@@ -9,18 +9,135 @@ datasource db {
 }
 
 model User {
+  id         Int      @id @default(autoincrement())
+  fullName   String   @map("full_name")
+  email      String   @unique
+  password   String
+  role       UserRole @default(USER)
+  provider   String?
+  providerId String   @map("provider_id")
+  createdAt  DateTime @default(now()) @map("created_at")
+  updatedAt  DateTime @updatedAt @map("updated_at")
+
+  cart             Cart?
+  orders           Order[]
+  verificationCode VerificationCode?
+}
+
+model Category {
   id        Int      @id @default(autoincrement())
-  fullName  String
-  email     String
-  password  String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  name      String
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  products   Product[]
+  ingredient Ingredient[]
 }
 
 model Product {
   id        Int      @id @default(autoincrement())
   name      String
-  imageUrl  String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  imageUrl  String   @map("image_url")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  ingredients Ingredient[]
+  variations  Variation[]
+
+  category   Category @relation(fields: [categoryId], references: [id])
+  categoryId Int      @map("category_id")
+}
+
+model Variation {
+  id        Int  @id @default(autoincrement())
+  price     Int
+  size      Int?
+  pizzaType Int? @map("pizza_type")
+
+  cartItems CartItem[]
+
+  product   Product @relation(fields: [productId], references: [id])
+  productId Int     @map("product_id")
+}
+
+model Ingredient {
+  id        Int      @id @default(autoincrement())
+  name      String
+  price     Int
+  imageUrl  String   @map("image_url")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  products  Product[]
+  cartItems CartItem[]
+
+  Category   Category? @relation(fields: [categoryId], references: [id])
+  categoryId Int?
+}
+
+model Cart {
+  id          Int      @id @default(autoincrement())
+  token       String
+  totalAmount Int      @default(0) @map("total_amount")
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+
+  items CartItem[]
+
+  user   User?   @relation(fields: [userId], references: [id])
+  userId Int?    @unique
+  Order  Order[]
+}
+
+model CartItem {
+  id       Int @id @default(autoincrement())
+  quantity Int
+
+  ingredients Ingredient[]
+
+  variation   Variation @relation(fields: [variationId], references: [id])
+  variationId Int       @map("variation_id")
+  cart        Cart      @relation(fields: [cartId], references: [id])
+  cartId      Int       @map("cart_id")
+}
+
+model Order {
+  id          Int         @id @default(autoincrement())
+  token       String
+  totalAmount Int         @map("total_amount")
+  status      OrderStatus
+  paymentId   String?     @map("payment_id")
+  items       Json
+  fullName    String      @map("full_name")
+  address     String
+  email       String
+  phone       String
+  comment     String?
+  createdAt   DateTime    @default(now()) @map("created_at")
+  updatedAt   DateTime    @updatedAt @map("updated_at")
+
+  user   User? @relation(fields: [userId], references: [id])
+  userId Int?  @map("user_id")
+  Cart   Cart? @relation(fields: [cartId], references: [id])
+  cartId Int?
+}
+
+model VerificationCode {
+  id        Int      @id @default(autoincrement())
+  code      String
+  createdAt DateTime @default(now()) @map("created_at")
+
+  user   User @relation(fields: [userId], references: [id])
+  userId Int  @unique @map("user_id")
+}
+
+enum OrderStatus {
+  PENDING
+  SUCCEEDED
+  CANCELLED
+}
+
+enum UserRole {
+  USER
+  ADMIN
 }
