@@ -1,28 +1,20 @@
+'use client'
+
 import { Title } from '@/components/shared/title'
 import { FilterCheckbox } from '@/components/shared/filter-checkbox'
 import { Input } from '@/components/ui'
 import { RangeSlider } from '@/components/shared/range-slider'
 import { CheckboxFiltersGroup } from '@/components/shared/checkbox-filters-group'
+import { useFilterIngredients } from '@/hooks/useFilterIngredients'
 
 type FiltersProps = {
   className: string
 }
 
 export const Filters = ({ className }: FiltersProps) => {
-  const items = [
-    { text: 'Сырный соус', value: '1' },
-    { text: 'Моцарелла', value: '2' },
-    { text: 'Чеснок', value: '3' },
-    { text: 'Солёные огурчики', value: '4' },
-    { text: 'Красный лук', value: '5' },
-    { text: 'Томаты', value: '6' },
-    { text: 'Сырный соус', value: '1' },
-    { text: 'Моцарелла', value: '2' },
-    { text: 'Чеснок', value: '3' },
-    { text: 'Солёные огурчики', value: '4' },
-    { text: 'Красный лук', value: '5' },
-    { text: 'Томаты', value: '6' }
-  ]
+  const { ingredients, loading, onAddId, selectedIds } = useFilterIngredients()
+
+  const items = ingredients.map(item => ({ value: String(item.id), text: item.name }))
 
   return (
     <div className={className}>
@@ -39,7 +31,17 @@ export const Filters = ({ className }: FiltersProps) => {
         </div>
         <RangeSlider min={0} max={1000} step={10} value={[0, 1000]} />
       </div>
-      <CheckboxFiltersGroup title='Ингридиенты' items={items} defaultItems={items} limit={6} className='mt-5' />
+      <CheckboxFiltersGroup
+        title='Ингридиенты'
+        name='ingredients'
+        items={items}
+        defaultItems={items.slice(0, 6)}
+        limit={6}
+        className='mt-5'
+        loading={loading}
+        onChange={onAddId}
+        selectedIds={selectedIds}
+      />
     </div>
   )
 }
