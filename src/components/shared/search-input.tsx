@@ -12,16 +12,20 @@ type SearchInputProps = {
 }
 
 export const SearchInput = ({ className }: SearchInputProps) => {
-  const [focused, sedFocused] = useState(false)
+  const [focused, setFocused] = useState(false)
   const [searchQuery, setSearchQuery] = useState('')
   const [products, setProducts] = useState([])
   const ref = useRef(null)
 
   useClickAway(ref, () => {
-    sedFocused(false)
+    setFocused(false)
   })
 
-  const onClickItem = () => {}
+  const onClickItem = () => {
+    setFocused(false)
+    setSearchQuery('')
+    setProducts([])
+  }
 
   useDebounce(
     () => {
@@ -40,7 +44,7 @@ export const SearchInput = ({ className }: SearchInputProps) => {
           className='rounded-2xl outline-none w-full bg-gray-100 pl-11'
           type='text'
           placeholder='Найти пиццу...'
-          onFocus={() => sedFocused(true)}
+          onFocus={() => setFocused(true)}
           value={searchQuery}
           onChange={e => setSearchQuery(e.target.value)}
         />
@@ -57,6 +61,7 @@ export const SearchInput = ({ className }: SearchInputProps) => {
                   key={product.id}
                   href={`/product/${product.id}`}
                   className='flex items-center gap-3 px-3 py-2 hover:bg-primary/10 cursor-pointer'
+                  onClick={onClickItem}
                 >
                   <img src={product.imageUrl} alt={product.name} className='rounded-sm h-8 w-8' />
                   <span>{product.name}</span>
