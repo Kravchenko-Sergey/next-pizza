@@ -15,7 +15,7 @@ type CheckboxFiltersGroupProps = {
   searchInputPlaceholder?: string
   onChange?: (values: string) => void
   defaultValue?: string[]
-  selectedIds: Set<string>
+  selectedValues: Set<string>
   className?: string
   name?: string
 }
@@ -29,7 +29,7 @@ export const CheckboxFiltersGroup = ({
   searchInputPlaceholder = 'Поиск...',
   className,
   onChange,
-  selectedIds,
+  selectedValues,
   name,
   defaultValue
 }: CheckboxFiltersGroupProps) => {
@@ -71,7 +71,7 @@ export const CheckboxFiltersGroup = ({
             text={item.text}
             value={item.value}
             endAdornment={item.endAdornment}
-            checked={selectedIds?.has(item.value)}
+            checked={selectedValues?.has(item.value)}
             onCheckedChange={() => onChange?.(item.value)}
             name={name}
           />
