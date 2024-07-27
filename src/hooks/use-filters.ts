@@ -1,5 +1,4 @@
-import { useRouter, useSearchParams } from 'next/navigation'
-import { useFilterIngredients } from '@/hooks/use-filter-ingredients'
+import { useSearchParams } from 'next/navigation'
 import { useSet } from 'react-use'
 import { useState } from 'react'
 
