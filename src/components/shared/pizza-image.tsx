@@ -2,11 +2,11 @@ import { cn } from '@/lib/utils'
 
 type ProductImageProps = {
   imageUrl: string
-  size: number
+  size: 20 | 30 | 40
   className?: string
 }
 
-export const ProductImage = ({ imageUrl, size, className }: ProductImageProps) => {
+export const PizzaImage = ({ imageUrl, size, className }: ProductImageProps) => {
   return (
     <div className={cn('flex items-center justify-center flex-1 relative w-full', className)}>
       <img
