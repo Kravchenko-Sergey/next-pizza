@@ -5,7 +5,6 @@ import { Button } from '@/components/ui'
 type ChooseProductFormProps = {
   name: string
   imageUrl: string
-  items: any[]
   onClickAdd?: VoidFunction
   className?: string
 }

@@ -26,7 +26,7 @@ export default function ChooseProductModal({ product, className }: ChooseProduct
             variations={product.variations}
           />
         ) : (
-          <ChooseProductForm name={product.name} imageUrl={product.imageUrl} items={[]} />
+          <ChooseProductForm name={product.name} imageUrl={product.imageUrl} />
         )}
       </DialogContent>
     </Dialog>

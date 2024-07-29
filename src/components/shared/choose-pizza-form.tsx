@@ -3,8 +3,8 @@ import { Title } from '@/components/shared/title'
 import { Button } from '@/components/ui'
 import { PizzaImage } from '@/components/shared/pizza-image'
 import GroupVariants from '@/components/shared/group-variants'
-import { PizzaSize, pizzaSizes, PizzaType, pizzaTypes } from '@/constants/pizza'
-import { useState } from 'react'
+import { mapPizzaType, PizzaSize, pizzaSizes, PizzaType, pizzaTypes } from '@/constants/pizza'
+import { useEffect, useState } from 'react'
 import { Ingredient, Variation } from '@prisma/client'
 import IngredientItem from '@/components/shared/ingredient'
 import { useSet } from 'react-use'
@@ -31,13 +31,32 @@ export default function ChoosePizzaForm({
 
   const [selectedIngredients, { toggle: addIngredient }] = useSet(new Set([]))
 
-  const textDetails = '30 см, традиционное тесто 30'
+  const textDetails = `${size} см, ${mapPizzaType[type]} тесто 30`
 
-  const pizzaPrice = variations.find(item => item.size === size && item.pizzaType === type)!.price
+  const pizzaPrice = variations.find(item => item.size === size && item.pizzaType === type)?.price || 0
   const totalIngredientsPrice = ingredients
     .filter(ingredient => selectedIngredients.has(ingredient.id))
     .reduce((acc, ingredient) => acc + ingredient.price, 0)
   const totalPrice = pizzaPrice + totalIngredientsPrice
+
+  const handleClickAdd = () => {
+    onClickAddCart?.()
+  }
+
+  const availablePizzas = variations.filter(variation => variation.pizzaType === type)
+  const availablePizzaSizes = pizzaSizes.map(item => ({
+    name: item.name,
+    value: item.value,
+    disabled: !availablePizzas.some(pizza => Number(pizza.size) === Number(item.value))
+  }))
+
+  useEffect(() => {
+    const isAvailableSize = availablePizzaSizes?.find(item => Number(item.value) === size && !item.disabled)
+    const availableSize = availablePizzaSizes?.find(item => !item.disabled)
+    if (!isAvailableSize && availableSize) {
+      setSize(Number(availableSize.value) as PizzaSize)
+    }
+  }, [type])
 
   return (
     <div className={cn('flex flex-1', className)}>
@@ -47,7 +66,7 @@ export default function ChoosePizzaForm({
         <p className='text-gray-400'>{textDetails}</p>
         <div className='flex flex-col gap-4 mt-5'>
           <GroupVariants
-            items={pizzaSizes}
+            items={availablePizzaSizes}
             value={String(size)}
             onClick={value => setSize(Number(value) as PizzaSize)}
           />
@@ -71,7 +90,7 @@ export default function ChoosePizzaForm({
             ))}
           </div>
         </div>
-        <Button className='h-[55px] px-10 text-base rounded-xl w-full mt-10'>
+        <Button onClick={handleClickAdd} className='h-[55px] px-10 text-base rounded-xl w-full mt-10'>
           Добавить в корзину за {totalPrice} р
         </Button>
       </div>
