@@ -32,9 +32,12 @@ export default function ChoosePizzaForm({
   const [selectedIngredients, { toggle: addIngredient }] = useSet(new Set([]))
 
   const textDetails = '30 см, традиционное тесто 30'
-  const totalPrice = 550
 
-  console.log(variations)
+  const pizzaPrice = variations.find(item => item.size === size && item.pizzaType === type)!.price
+  const totalIngredientsPrice = ingredients
+    .filter(ingredient => selectedIngredients.has(ingredient.id))
+    .reduce((acc, ingredient) => acc + ingredient.price, 0)
+  const totalPrice = pizzaPrice + totalIngredientsPrice
 
   return (
     <div className={cn('flex flex-1', className)}>
