@@ -19,7 +19,12 @@ export default function ChooseProductModal({ product, className }: ChooseProduct
     <Dialog open={Boolean(product)} onOpenChange={() => router.back()}>
       <DialogContent className={cn('p-0 w-[1060px] max-w-[1060px] min-h-[500px] bg-white overflow-hidden', className)}>
         {isPizzaForm ? (
-          <ChoosePizzaForm name={product.name} imageUrl={product.imageUrl} ingredients={[]} items={[]} />
+          <ChoosePizzaForm
+            name={product.name}
+            imageUrl={product.imageUrl}
+            ingredients={product.ingredients}
+            variations={product.variations}
+          />
         ) : (
           <ChooseProductForm name={product.name} imageUrl={product.imageUrl} items={[]} />
         )}
