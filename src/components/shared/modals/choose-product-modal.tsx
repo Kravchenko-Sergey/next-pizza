@@ -1,6 +1,6 @@
 'use client'
 
-import { Dialog, DialogContent } from '@/components/ui/dialog'
+import { Dialog, DialogContent, DialogTitle } from '@/components/ui/dialog'
 import { cn } from '@/lib/utils'
 import { useRouter } from 'next/navigation'
 import ChooseProductForm from '@/components/shared/choose-product-form'
