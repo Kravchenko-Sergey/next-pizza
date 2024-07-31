@@ -18,11 +18,16 @@ export default function CartDrawer({ className, children }: PropsWithChildren<Ca
   const totalAmount = useCartStore(state => state.totalAmount)
   const fetchCartItems = useCartStore(state => state.fetchCartItems)
   const updateItemQuantity = useCartStore(state => state.updateItemQuantity)
+  const removeCartItem = useCartStore(state => state.removeCartItem)
   const items = useCartStore(state => state.items)
 
   const onClickCountButton = (id: number, quantity: number, type: 'plus' | 'minus') => {
     const newQuantity = type === 'plus' ? quantity + 1 : quantity - 1
     updateItemQuantity(id, newQuantity)
+  }
+
+  const onClickRemove = (id: number) => {
+    removeCartItem(id)
   }
 
   useEffect(() => {
@@ -54,6 +59,7 @@ export default function CartDrawer({ className, children }: PropsWithChildren<Ca
                 price={item.price}
                 quantity={item.quantity}
                 onClickCountButton={type => onClickCountButton(item.id, item.quantity, type)}
+                onClickRemove={() => onClickRemove(item.id)}
               />
             ))}
           </div>

@@ -6,6 +6,7 @@ import * as CartItem from './cart-item-details'
 
 type CartDrawerItemProps = CartItemProps & {
   onClickCountButton?: (type: 'plus' | 'minus') => void
+  onClickRemove?: () => void
   className?: string
 }
 
