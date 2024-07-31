@@ -5,7 +5,7 @@ import { ProductCard } from '@/components/shared/product-card'
 import { Title } from '@/components/shared/title'
 import { useIntersection } from 'react-use'
 import { useEffect, useRef } from 'react'
-import { useCategoryStore } from '../../../store/category'
+import { useCategoryStore } from '@/store/category'
 
 type ProductsGroupListProps = {
   title: string

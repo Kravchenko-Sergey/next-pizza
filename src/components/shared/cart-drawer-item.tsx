@@ -5,6 +5,7 @@ import CountButton from '@/components/shared/count-button'
 import * as CartItem from './cart-item-details'
 
 type CartDrawerItemProps = CartItemProps & {
+  onClickCountButton?: (type: 'plus' | 'minus') => void
   className?: string
 }
 
