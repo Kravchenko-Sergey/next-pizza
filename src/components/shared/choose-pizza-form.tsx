@@ -3,10 +3,9 @@ import { Title } from '@/components/shared/title'
 import { Button } from '@/components/ui'
 import { PizzaImage } from '@/components/shared/pizza-image'
 import GroupVariants from '@/components/shared/group-variants'
-import { mapPizzaType, PizzaSize, PizzaType, pizzaTypes } from '@/constants/pizza'
+import { PizzaSize, PizzaType, pizzaTypes } from '@/constants/pizza'
 import { Ingredient, Variation } from '@prisma/client'
 import IngredientItem from '@/components/shared/ingredient'
-import { getTotalPizzaPrice } from '@/lib/calc-total-pizza-price'
 import { usePizzaOptions } from '@/hooks/use-pizza-options'
 import { getPizzaDetails } from '@/lib/get-pizza-details'
 
@@ -15,6 +14,8 @@ type ChoosePizzaFormProps = {
   imageUrl: string
   ingredients: Ingredient[]
   variations: Variation[]
+  loading?: boolean
+  onSubmit: (itemId: number, ingredients: number[]) => void
   onClickAddCart?: VoidFunction
   className?: string
 }
@@ -24,16 +25,19 @@ export default function ChoosePizzaForm({
   imageUrl,
   ingredients,
   variations,
-  onClickAddCart,
+  onSubmit,
+  loading,
   className
 }: ChoosePizzaFormProps) {
-  const { size, type, selectedIngredients, availableSizes, setSize, setType, addIngredient } =
+  const { size, type, selectedIngredients, availableSizes, currentItemId, setSize, setType, addIngredient } =
     usePizzaOptions(variations)
 
   const { totalPrice, textDetails } = getPizzaDetails(type, size, variations, ingredients, selectedIngredients)
 
   const handleClickAdd = () => {
-    onClickAddCart?.()
+    if (currentItemId) {
+      onSubmit(currentItemId, Array.from(selectedIngredients))
+    }
   }
 
   return (
@@ -68,7 +72,7 @@ export default function ChoosePizzaForm({
             ))}
           </div>
         </div>
-        <Button onClick={handleClickAdd} className='h-[55px] px-10 text-base rounded-xl w-full mt-10'>
+        <Button onClick={handleClickAdd} loading={loading} className='h-[55px] px-10 text-base rounded-xl w-full mt-10'>
           Добавить в корзину за {totalPrice} р
         </Button>
       </div>

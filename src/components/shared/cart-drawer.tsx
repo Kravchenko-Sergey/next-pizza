@@ -44,10 +44,9 @@ export default function CartDrawer({ className, children }: PropsWithChildren<Ca
           </SheetTitle>
         </SheetHeader>
         <div className='-mx-6 mt-5 overflow-auto flex-1'>
-          <div className='mb-2'>
-            {items.map(item => (
+          {items.map(item => (
+            <div key={item.id} className='mb-2'>
               <CartDrawerItem
-                key={item.id}
                 id={item.id}
                 imageUrl={item.imageUrl}
                 details={
@@ -61,8 +60,8 @@ export default function CartDrawer({ className, children }: PropsWithChildren<Ca
                 onClickCountButton={type => onClickCountButton(item.id, item.quantity, type)}
                 onClickRemove={() => onClickRemove(item.id)}
               />
-            ))}
-          </div>
+            </div>
+          ))}
         </div>
         <SheetFooter className='-mx-6 bg-white p-8'>
           <div className='w-full'>
