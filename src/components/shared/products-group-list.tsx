@@ -1,15 +1,16 @@
 'use client'
 
-import { cn } from '@/lib/utils'
 import { ProductCard } from '@/components/shared/product-card'
 import { Title } from '@/components/shared/title'
 import { useIntersection } from 'react-use'
 import { useEffect, useRef } from 'react'
 import { useCategoryStore } from '@/store/category'
+import { Product } from '@prisma/client'
+import { cn } from '@/lib/utils'
 
 type ProductsGroupListProps = {
   title: string
-  items: any[]
+  items: Product[]
   categoryId: number
   className?: string
   listClassName?: string
@@ -39,6 +40,7 @@ export const ProductsGroupList = ({ title, items, categoryId, className, listCla
             name={product.name}
             imageUrl={product.imageUrl}
             price={product.variations[0].price}
+            ingredients={product.ingredients}
           />
         ))}
       </div>
