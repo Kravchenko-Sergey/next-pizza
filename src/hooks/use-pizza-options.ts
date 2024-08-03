@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useSet } from 'react-use'
-import { ProductItem } from '@prisma/client'
+import { Variation } from '@prisma/client'
 import { PizzaSize, PizzaType } from '@/constants/pizza'
 import { Variant } from '@/components/shared/group-variants'
 import { getAvailablePizzaSizes } from '@/lib'
@@ -16,7 +16,7 @@ interface ReturnProps {
   addIngredient: (id: number) => void
 }
 
-export const usePizzaOptions = (items: ProductItem[]): ReturnProps => {
+export const usePizzaOptions = (items: Variation[]): ReturnProps => {
   const [size, setSize] = useState<PizzaSize>(20)
   const [type, setType] = useState<PizzaType>(1)
   const [selectedIngredients, { toggle: addIngredient }] = useSet(new Set<number>([]))
