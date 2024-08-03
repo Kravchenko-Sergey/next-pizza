@@ -1,1 +1,1 @@
-export { ChoseProductModal } from './choose-product-modal'
+export { ChooseProductModal } from './choose-product-modal'
