@@ -55,7 +55,7 @@ export const SearchInput = ({ className }: SearchInputProps) => {
               focused && 'visible opacity-100 top-12'
             )}
           >
-            {products.map(product => {
+            {products.map((product: any) => {
               return (
                 <Link
                   key={product.id}
