@@ -1,13 +1,13 @@
 'use server'
 
-import { OrderStatus, prisma } from '../prisma/prisma-client'
+import { prisma } from '../prisma/prisma-client'
 import { hashSync } from 'bcrypt'
 import { cookies } from 'next/headers'
 import { CheckoutFormValues } from '@/constants/checkout-form-schema'
 import { createPayment } from '@/lib/create-payment'
 import { sendEmail } from '@/lib/send-email'
 import { PayOrderTemplate } from '@/components/shared/email-templates/pay-order'
-import { Prisma } from '@prisma/client'
+import { Prisma, OrderStatus } from '@prisma/client'
 import { getUserSession } from '@/lib/get-user-session'
 import { VerificationUserTemplate } from '@/components/shared/email-templates/verification-user'
 

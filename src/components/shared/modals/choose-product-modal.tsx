@@ -11,7 +11,7 @@ type ChooseProductModalProps = {
   className?: string
 }
 
-export function ChooseProductModal({ product, className }: ChooseProductModalProps) {
+export default function ChooseProductModal({ product, className }: ChooseProductModalProps) {
   const router = useRouter()
 
   return (
