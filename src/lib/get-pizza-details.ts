@@ -10,7 +10,7 @@ export const getPizzaDetails = (
   selectedIngredients: Set<number>
 ) => {
   const totalPrice = getTotalPizzaPrice(type, size, items, ingredients, selectedIngredients)
-  const textDetaills = `${size} см, ${mapPizzaType[type]} пицца`
+  const textDetails = `${size} см, ${mapPizzaType[type]} пицца`
 
-  return { totalPrice, textDetaills }
+  return { totalPrice, textDetails }
 }
