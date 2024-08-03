@@ -1,4 +1,4 @@
-import { prisma } from '@/prisma/prisma-client'
+import { prisma } from '../../../../../prisma/prisma-client'
 import { notFound } from 'next/navigation'
 import { Container } from '@/components/shared'
 import { ProductForm } from '@/components/shared/product-form'

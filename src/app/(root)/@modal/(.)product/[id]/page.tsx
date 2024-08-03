@@ -1,4 +1,4 @@
-import { prisma } from '@/prisma/prisma-client'
+import { prisma } from '../../../../../../prisma/prisma-client'
 import { notFound } from 'next/navigation'
 import ChooseProductModal from '@/components/shared/modals/choose-product-modal'
 import { Container } from '@/components/shared'

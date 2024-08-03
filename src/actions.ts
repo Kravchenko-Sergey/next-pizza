@@ -1,6 +1,6 @@
 'use server'
 
-import { OrderStatus, prisma } from '@/prisma/prisma-client'
+import { OrderStatus, prisma } from '../prisma/prisma-client'
 import { hashSync } from 'bcrypt'
 import { cookies } from 'next/headers'
 import { CheckoutFormValues } from '@/constants/checkout-form-schema'
