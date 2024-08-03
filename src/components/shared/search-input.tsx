@@ -2,7 +2,7 @@
 
 import { Search } from 'lucide-react'
 import { cn } from '@/lib/utils'
-import { useEffect, useRef, useState } from 'react'
+import { useRef, useState } from 'react'
 import { useClickAway, useDebounce } from 'react-use'
 import Link from 'next/link'
 import { Api } from '@/services/api-client'
@@ -29,7 +29,7 @@ export const SearchInput = ({ className }: SearchInputProps) => {
 
   useDebounce(
     () => {
-      Api.product.search(searchQuery).then(data => setProducts(data))
+      Api.product.search(searchQuery).then((data: any) => setProducts(data))
     },
     250,
     [searchQuery]
