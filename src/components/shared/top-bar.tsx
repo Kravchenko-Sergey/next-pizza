@@ -2,6 +2,7 @@ import { cn } from '@/lib/utils'
 import { Categories } from '@/components/shared/categories'
 import { SortPopup } from '@/components/shared/sort-popup'
 import { Container } from '@/components/shared/container'
+import { Category } from '@prisma/client'
 
 type TopBarProps = {
   categories: Category[]
