@@ -23,7 +23,7 @@ export async function PATCH(req: NextRequest, { params }: { params: { id: string
     const updatedUserCart = await updateCartTotalAmount(token)
 
     return NextResponse.json(updatedUserCart)
-  } catch (e) {
+  } catch (e: any) {
     console.error(e)
     return NextResponse.json({ message: e.message })
   }
