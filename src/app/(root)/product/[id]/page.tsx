@@ -3,7 +3,7 @@ import { notFound } from 'next/navigation'
 import { Container } from '@/components/shared'
 import { ProductForm } from '@/components/shared/product-form'
 
-export default async function ProductPage({ params: { id } }) {
+export default async function ProductPage({ params: { id } }: { params: { id: string } }) {
   const product = await prisma.product.findFirst({
     where: { id: Number(id) },
     include: {
