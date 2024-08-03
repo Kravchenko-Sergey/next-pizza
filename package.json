@@ -15,6 +15,7 @@
   "prisma": {
     "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} src/prisma/seed.ts"
   },
+  "packageManager": "pnpm@9.1.1",
   "dependencies": {
     "@hookform/resolvers": "^3.9.0",
     "@prisma/client": "^5.17.0",
