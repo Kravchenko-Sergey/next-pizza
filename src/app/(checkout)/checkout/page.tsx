@@ -11,11 +11,9 @@ import { CheckoutAddressForm } from '@/components/shared/checkout/checkout-addre
 import { FormProvider, useForm } from 'react-hook-form'
 import { CheckoutSidebar } from '@/components/shared/checkout-sidebar'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { checkoutFormSchema } from '@/constants/checkout-form-schema'
+import { checkoutFormSchema, CheckoutFormValues } from '@/constants/checkout-form-schema'
 import { createOrder } from '@/actions'
 import { useSession } from 'next-auth/react'
-
-class CheckoutFormValues {}
 
 export default function CheckoutPage() {
   const [submitting, setSubmitting] = useState(false)
