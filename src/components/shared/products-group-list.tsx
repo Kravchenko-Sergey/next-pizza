@@ -33,7 +33,7 @@ export const ProductsGroupList = ({ title, items, categoryId, className, listCla
     <div className={className} id={title} ref={intersectionRef}>
       <Title text={title} size='lg' className='mb-5 font-extrabold' />
       <div className={cn('grid grid-cols-3 gap-[50px]', listClassName)}>
-        {items.map(product => (
+        {items.map((product: any) => (
           <ProductCard
             key={product.id}
             id={product.id}
