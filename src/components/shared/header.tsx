@@ -1,19 +1,30 @@
+'use client'
+
 import { cn } from '@/lib/utils'
 import { Container } from '@/components/shared/container'
 import Image from 'next/image'
-import { Button } from '@/components/ui'
-import { ArrowRight, ShoppingCart, User } from 'lucide-react'
 import Link from 'next/link'
 import { SearchInput } from '@/components/shared/search-input'
 import CartButton from '@/components/shared/cart-button'
+import { useSession, signIn } from 'next-auth/react'
+import { ProfileButton } from '@/components/shared/profile-button'
+import { useState } from 'react'
+import { useRouter } from 'next/navigation'
+import { AuthModal } from '@/components/shared/modals/auth-modal/auth-modal'
 
 type HeaderProps = {
+  hasSearch?: boolean
+  hasCart?: boolean
   className?: string
 }
 
-export const Header = ({ className }: HeaderProps) => {
+export const Header = ({ hasSearch = true, hasCart = true, className }: HeaderProps) => {
+  const { data: session } = useSession()
+  const router = useRouter()
+  const [openAuthModal, setOpenAuthModal] = useState(false)
+
   return (
-    <header className={cn('border border-b', className)}>
+    <header className={cn('border-b', className)}>
       <Container className='flex items-center justify-between py-8'>
         <Link href='/'>
           <div className='flex items-center gap-4'>
@@ -24,16 +35,15 @@ export const Header = ({ className }: HeaderProps) => {
             </div>
           </div>
         </Link>
-        <div className='mx-10 flex-1'>
-          <SearchInput />
-        </div>
-        <div className='flex items-center gap-3'>
-          <Button variant='outline' className='flex items-center gap-1'>
-            <User size={16} className='flex items-center gap-3' /> Войти
-          </Button>
-          <div>
-            <CartButton />
+        {hasSearch && (
+          <div className='mx-10 flex-1'>
+            <SearchInput />
           </div>
+        )}
+        <div className='flex items-center gap-3'>
+          <AuthModal open={openAuthModal} onClose={() => setOpenAuthModal(false)} />
+          <ProfileButton onClickSignIn={() => setOpenAuthModal(true)} />
+          {hasCart && <CartButton />}
         </div>
       </Container>
     </header>

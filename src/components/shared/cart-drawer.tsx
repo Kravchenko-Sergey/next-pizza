@@ -108,7 +108,7 @@ export default function CartDrawer({ className, children }: PropsWithChildren<Ca
                     <span className='font-bold text-lg'>{totalAmount} ₽</span>
                   </div>
 
-                  <Link href='/cart'>
+                  <Link href='/checkout'>
                     <Button type='submit' className='w-full h-12 text-base'>
                       Оформить заказ
                       <ArrowRight className='w-5 ml-2' />
